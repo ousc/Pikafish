@@ -31,7 +31,7 @@ auto constexpr NEVER_IN_USE = S(0, 0);
 
 // 'Bonus' contains Piece-Square parameters.
 // Scores are explicit for files A to E, implicitly mirrored for F to I.
-constexpr Score Bonus[][RANK_NB][int(FILE_NB) / 2 + 1] = {
+inline Score Bonus[][RANK_NB][int(FILE_NB) / 2 + 1] = {
   { },// NoPiece
   { // Rook
    { S(-173, -249), S(  62,  -89), S( -49, -211), S( -99,  -82), S(  57,   77) },
@@ -128,7 +128,12 @@ void init() {
     }
   }
 }
-
+TUNE(Bonus[ROOK], Bonus[CANNON], Bonus[KNIGHT],
+     Bonus[ADVISOR][0][3], Bonus[ADVISOR][1][4], Bonus[ADVISOR][2][3],
+     Bonus[BISHOP][0][2], Bonus[BISHOP][2][0], Bonus[BISHOP][2][4], Bonus[BISHOP][4][2],
+     Bonus[KING][0][3], Bonus[KING][0][4], Bonus[KING][1][3], Bonus[KING][1][4], Bonus[KING][2][3], Bonus[KING][2][4],
+     Bonus[PAWN][3][0], Bonus[PAWN][3][2], Bonus[PAWN][3][4], Bonus[PAWN][4][0], Bonus[PAWN][4][2], Bonus[PAWN][4][4],
+     Bonus[PAWN][5], Bonus[PAWN][6], Bonus[PAWN][7], Bonus[PAWN][8], Bonus[PAWN][9], init);
 } // namespace PSQT
 
 } // namespace Stockfish
